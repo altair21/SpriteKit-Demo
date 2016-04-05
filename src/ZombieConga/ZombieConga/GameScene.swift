@@ -9,15 +9,21 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    let zombie = SKSpriteNode(imageNamed: "zombie1")
+    
     override func didMoveToView(view: SKView) {
         self.backgroundColor = SKColor.blackColor()
         let background = SKSpriteNode(imageNamed: "background1")
         background.zPosition = -1
+        background.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         self.addChild(background)
         let mySize = background.size
         print("Size: \(mySize)")
         
-        background.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        zombie.position = CGPoint(x: 400, y: 400)
+        zombie.setScale(2.0)
+        self.addChild(zombie)
+        
     }
     
 }
