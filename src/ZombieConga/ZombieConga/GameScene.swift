@@ -45,7 +45,9 @@ class GameScene: SKScene {
 //        zombie.setScale(2.0)
         self.addChild(zombie)
         
-        debugDrawPlayableArea()
+//        debugDrawPlayableArea()
+        
+        spawnEnemy()
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -137,5 +139,18 @@ class GameScene: SKScene {
             zombie.position.y = topRight.y
             velocity.y = -velocity.y
         }
+    }
+    
+    func spawnEnemy() {
+        let enemy = SKSpriteNode(imageNamed: "enemy")
+        enemy.position = CGPoint(x: self.size.width + enemy.size.width / 2,
+                                 y: self.size.height / 2)
+        addChild(enemy)
+        
+        let actionMidMove = SKAction.moveTo(CGPoint(x: self.size.width / 2, y: CGRectGetMinY(playableRect) + enemy.size.width / 2), duration: 1.0)
+        let actionMove = SKAction.moveTo(CGPoint(x: 0, y: self.size.height / 2), duration: 1.0)
+        let wait = SKAction.waitForDuration(0.25)
+        let sequence = SKAction.sequence([actionMidMove, wait, actionMove])
+        enemy.runAction(sequence)
     }
 }
