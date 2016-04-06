@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5092C3311CB5130C001CBEA1 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092C3301CB5130C001CBEA1 /* MyUtils.swift */; };
 		50F3BACD1CB3AF1800AAFA92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3BACC1CB3AF1800AAFA92 /* AppDelegate.swift */; };
 		50F3BAD11CB3AF1800AAFA92 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3BAD01CB3AF1800AAFA92 /* GameScene.swift */; };
 		50F3BAD31CB3AF1800AAFA92 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3BAD21CB3AF1800AAFA92 /* GameViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5092C3301CB5130C001CBEA1 /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
 		50F3BAC91CB3AF1800AAFA92 /* ZombieConga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZombieConga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50F3BACC1CB3AF1800AAFA92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50F3BAD01CB3AF1800AAFA92 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				50F3BAD71CB3AF1800AAFA92 /* Assets.xcassets */,
 				50F3BAD91CB3AF1800AAFA92 /* LaunchScreen.storyboard */,
 				50F3BADC1CB3AF1800AAFA92 /* Info.plist */,
+				5092C3301CB5130C001CBEA1 /* MyUtils.swift */,
 			);
 			path = ZombieConga;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 				50F3BAD11CB3AF1800AAFA92 /* GameScene.swift in Sources */,
 				50F3BAD31CB3AF1800AAFA92 /* GameViewController.swift in Sources */,
 				50F3BACD1CB3AF1800AAFA92 /* AppDelegate.swift in Sources */,
+				5092C3311CB5130C001CBEA1 /* MyUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +299,7 @@
 				50F3BAE11CB3AF1800AAFA92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
