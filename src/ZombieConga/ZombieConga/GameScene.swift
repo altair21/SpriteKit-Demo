@@ -3,7 +3,7 @@
 //  ZombieConga
 //
 //  Created by altair21 on 16/4/5.
-//  Copyright (c) 2016年 altair21. All rights reserved.
+//  Copyright (c) 2016 altair21. All rights reserved.
 //
 
 import SpriteKit
@@ -39,10 +39,8 @@ class GameScene: SKScene {
         background.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         self.addChild(background)
         let mySize = background.size
-        print("Size: \(mySize)")
         
         zombie.position = CGPoint(x: 400, y: 400)
-//        zombie.setScale(2.0)
         self.addChild(zombie)
         
 //        debugDrawPlayableArea()
@@ -147,10 +145,19 @@ class GameScene: SKScene {
                                  y: self.size.height / 2)
         addChild(enemy)
         
-        let actionMidMove = SKAction.moveTo(CGPoint(x: self.size.width / 2, y: CGRectGetMinY(playableRect) + enemy.size.width / 2), duration: 1.0)
-        let actionMove = SKAction.moveTo(CGPoint(x: 0, y: self.size.height / 2), duration: 1.0)
+        let actionMidMove = SKAction.moveByX(-self.size.width / 2 - enemy.size.width / 2, y: -CGRectGetHeight(playableRect) / 2 + enemy.size.height / 2, duration: 1.0)
+        let actionMove = SKAction.moveByX(-self.size.width / 2 - enemy.size.width / 2, y: CGRectGetHeight(playableRect) / 2 - enemy.size.height / 2, duration: 1.0)
         let wait = SKAction.waitForDuration(0.25)
-        let sequence = SKAction.sequence([actionMidMove, wait, actionMove])
-        enemy.runAction(sequence)
+        let logMessage = SKAction.runBlock { 
+            print("Reach bottom!")
+        }
+//        let reverseMid = actionMidMove.reversedAction()
+//        let reverseMove = actionMove.reversedAction()
+//        let sequence = SKAction.sequence([actionMidMove, logMessage, wait, actionMove, reverseMove, logMessage, wait, reverseMid])
+//        enemy.runAction(sequence)
+        let halfSequence = SKAction.sequence([actionMidMove, logMessage, wait, actionMove])
+        let sequence = SKAction.sequence([halfSequence, halfSequence.reversedAction()])
+        let repeatAction = SKAction.repeatActionForever(sequence)
+        enemy.runAction(repeatAction)
     }
 }
