@@ -45,7 +45,9 @@ class GameScene: SKScene {
         
 //        debugDrawPlayableArea()
         
-        spawnEnemy()
+        self.runAction(SKAction.repeatActionForever(
+            SKAction.sequence([SKAction.runBlock(spawnEnemy),
+                SKAction.waitForDuration(2.0)])))
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -141,23 +143,31 @@ class GameScene: SKScene {
     
     func spawnEnemy() {
         let enemy = SKSpriteNode(imageNamed: "enemy")
-        enemy.position = CGPoint(x: self.size.width + enemy.size.width / 2,
-                                 y: self.size.height / 2)
+        enemy.position = CGPoint(x: self.size.width + enemy.size.width / 2, y: CGFloat.random(min: CGRectGetMinY(playableRect) + enemy.size.height / 2, max: CGRectGetMaxY(playableRect) - enemy.size.height / 2))
         addChild(enemy)
         
-        let actionMidMove = SKAction.moveByX(-self.size.width / 2 - enemy.size.width / 2, y: -CGRectGetHeight(playableRect) / 2 + enemy.size.height / 2, duration: 1.0)
-        let actionMove = SKAction.moveByX(-self.size.width / 2 - enemy.size.width / 2, y: CGRectGetHeight(playableRect) / 2 - enemy.size.height / 2, duration: 1.0)
-        let wait = SKAction.waitForDuration(0.25)
-        let logMessage = SKAction.runBlock { 
-            print("Reach bottom!")
-        }
-//        let reverseMid = actionMidMove.reversedAction()
-//        let reverseMove = actionMove.reversedAction()
-//        let sequence = SKAction.sequence([actionMidMove, logMessage, wait, actionMove, reverseMove, logMessage, wait, reverseMid])
-//        enemy.runAction(sequence)
-        let halfSequence = SKAction.sequence([actionMidMove, logMessage, wait, actionMove])
-        let sequence = SKAction.sequence([halfSequence, halfSequence.reversedAction()])
-        let repeatAction = SKAction.repeatActionForever(sequence)
-        enemy.runAction(repeatAction)
+        let actionMove = SKAction.moveToX(-enemy.size.width / 2, duration: 2.0)
+        enemy.runAction(actionMove)
+        
+        
+//        let enemy = SKSpriteNode(imageNamed: "enemy")
+//        enemy.position = CGPoint(x: self.size.width + enemy.size.width / 2,
+//                                 y: self.size.height / 2)
+//        addChild(enemy)
+//        
+//        let actionMidMove = SKAction.moveByX(-self.size.width / 2 - enemy.size.width / 2, y: -CGRectGetHeight(playableRect) / 2 + enemy.size.height / 2, duration: 1.0)
+//        let actionMove = SKAction.moveByX(-self.size.width / 2 - enemy.size.width / 2, y: CGRectGetHeight(playableRect) / 2 - enemy.size.height / 2, duration: 1.0)
+//        let wait = SKAction.waitForDuration(0.25)
+//        let logMessage = SKAction.runBlock { 
+//            print("Reach bottom!")
+//        }
+////        let reverseMid = actionMidMove.reversedAction()
+////        let reverseMove = actionMove.reversedAction()
+////        let sequence = SKAction.sequence([actionMidMove, logMessage, wait, actionMove, reverseMove, logMessage, wait, reverseMid])
+////        enemy.runAction(sequence)
+//        let halfSequence = SKAction.sequence([actionMidMove, logMessage, wait, actionMove])
+//        let sequence = SKAction.sequence([halfSequence, halfSequence.reversedAction()])
+//        let repeatAction = SKAction.repeatActionForever(sequence)
+//        enemy.runAction(repeatAction)
     }
 }
