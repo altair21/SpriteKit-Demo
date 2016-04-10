@@ -48,6 +48,7 @@ class GameScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
+        playBackgroundMusic("backgroundMusic.mp3")
         self.backgroundColor = SKColor.blackColor()
         let background = SKSpriteNode(imageNamed: "background1")
         background.zPosition = -1
@@ -97,6 +98,12 @@ class GameScene: SKScene {
         if lives <= 0 && !gameOver {
             gameOver = true
             print("You Lose")
+            backgroundMusicPlayer.stop()
+            
+            let gameOverScene = GameOverScene(size: self.size, won: false)
+            gameOverScene.scaleMode = self.scaleMode
+            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            self.view?.presentScene(gameOverScene, transition: reveal)
         }
     }
     
@@ -267,7 +274,7 @@ class GameScene: SKScene {
         let sequence = SKAction.sequence([enemyCollisionSound, blinkAction, resetZombie])
         zombie.runAction(sequence)
         loseCats()
-        lives--
+        lives -= 1
     }
     
     func checkCollisions() {
@@ -318,6 +325,12 @@ class GameScene: SKScene {
         if trainCount >= 15 && !gameOver {
             gameOver = true
             print("You win")
+            backgroundMusicPlayer.stop()
+            
+            let gameOverScene = GameOverScene(size: self.size, won: true)
+            gameOverScene.scaleMode = self.scaleMode
+            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            view?.presentScene(gameOverScene, transition: reveal)
         }
     }
     

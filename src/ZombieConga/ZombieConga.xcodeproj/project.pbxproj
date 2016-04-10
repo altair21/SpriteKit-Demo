@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		508FAD9D1CBA9B6200325DF5 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FAD9C1CBA9B6200325DF5 /* GameOverScene.swift */; };
 		5092C3311CB5130C001CBEA1 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092C3301CB5130C001CBEA1 /* MyUtils.swift */; };
 		50B855161CB94DF700C403A1 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 50B855111CB94DF700C403A1 /* backgroundMusic.mp3 */; };
 		50B855171CB94DF700C403A1 /* hitCat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 50B855121CB94DF700C403A1 /* hitCat.wav */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		508FAD9C1CBA9B6200325DF5 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		5092C3301CB5130C001CBEA1 /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
 		50B855111CB94DF700C403A1 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		50B855121CB94DF700C403A1 /* hitCat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitCat.wav; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				50F3BACC1CB3AF1800AAFA92 /* AppDelegate.swift */,
 				50F3BAD01CB3AF1800AAFA92 /* GameScene.swift */,
 				50F3BAD21CB3AF1800AAFA92 /* GameViewController.swift */,
+				508FAD9C1CBA9B6200325DF5 /* GameOverScene.swift */,
 				50F3BAD41CB3AF1800AAFA92 /* Main.storyboard */,
 				50F3BAD71CB3AF1800AAFA92 /* Assets.xcassets */,
 				50F3BAD91CB3AF1800AAFA92 /* LaunchScreen.storyboard */,
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508FAD9D1CBA9B6200325DF5 /* GameOverScene.swift in Sources */,
 				50F3BAD11CB3AF1800AAFA92 /* GameScene.swift in Sources */,
 				50F3BAD31CB3AF1800AAFA92 /* GameViewController.swift in Sources */,
 				50F3BACD1CB3AF1800AAFA92 /* AppDelegate.swift in Sources */,
