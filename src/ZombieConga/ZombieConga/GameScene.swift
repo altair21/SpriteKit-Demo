@@ -34,6 +34,7 @@ class GameScene: SKScene {
             width: playableRect.width,
             height: playableRect.height)
     }
+    let livesLabel = SKLabelNode(fontNamed: "GoodDog Cool")
     
     let playableRect: CGRect
     
@@ -92,6 +93,16 @@ class GameScene: SKScene {
         self.camera = cameraNode
 //        cameraNode.position = zombie.position
         setCameraPosition(CGPoint(x: self.size.width/2, y: self.size.height/2))
+        
+        livesLabel.text = "Lives: X"
+        livesLabel.fontColor = SKColor.blackColor()
+        livesLabel.fontSize = 100
+        livesLabel.zPosition = 100
+//        livesLabel.position = CGPoint.zero
+        livesLabel.horizontalAlignmentMode = .Left
+        livesLabel.verticalAlignmentMode = .Bottom
+        livesLabel.position = CGPoint(x: -playableRect.size.width / 2 + CGFloat(20), y: -playableRect.size.height / 2 + CGFloat(20) + overlapAmount() / 2)
+        cameraNode.addChild(livesLabel)
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -363,6 +374,8 @@ class GameScene: SKScene {
             let reveal = SKTransition.flipHorizontalWithDuration(0.5)
             view?.presentScene(gameOverScene, transition: reveal)
         }
+        
+        livesLabel.text = "Lives: \(lives)"
     }
     
     func loseCats() {
