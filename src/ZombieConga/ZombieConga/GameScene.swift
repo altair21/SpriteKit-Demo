@@ -34,7 +34,7 @@ class GameScene: SKScene {
             width: playableRect.width,
             height: playableRect.height)
     }
-    let livesLabel = SKLabelNode(fontNamed: "GoodDog Cool")
+    let livesLabel = SKLabelNode(fontNamed: "Glimstick")
     
     let playableRect: CGRect
     
