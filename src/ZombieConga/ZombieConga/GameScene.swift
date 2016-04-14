@@ -35,6 +35,7 @@ class GameScene: SKScene {
             height: playableRect.height)
     }
     let livesLabel = SKLabelNode(fontNamed: "Glimstick")
+    let catsLabel = SKLabelNode(fontNamed: "Glimstick")
     
     let playableRect: CGRect
     
@@ -103,6 +104,15 @@ class GameScene: SKScene {
         livesLabel.verticalAlignmentMode = .Bottom
         livesLabel.position = CGPoint(x: -playableRect.size.width / 2 + CGFloat(20), y: -playableRect.size.height / 2 + CGFloat(20) + overlapAmount() / 2)
         cameraNode.addChild(livesLabel)
+        
+        catsLabel.text = "Cats: X"
+        catsLabel.fontColor = SKColor.blackColor()
+        catsLabel.fontSize = 100
+        catsLabel.zPosition = 100
+        catsLabel.horizontalAlignmentMode = .Right
+        catsLabel.verticalAlignmentMode = .Bottom
+        catsLabel.position = CGPoint(x: playableRect.size.width / 2 - CGFloat(20), y: -playableRect.size.height / 2 + CGFloat(20) + overlapAmount() / 2)
+        cameraNode.addChild(catsLabel)
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -376,6 +386,7 @@ class GameScene: SKScene {
         }
         
         livesLabel.text = "Lives: \(lives)"
+        catsLabel.text = "Cats: \(trainCount)"
     }
     
     func loseCats() {
