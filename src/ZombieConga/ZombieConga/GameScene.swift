@@ -36,6 +36,8 @@ class GameScene: SKScene {
     }
     let livesLabel = SKLabelNode(fontNamed: "Glimstick")
     let catsLabel = SKLabelNode(fontNamed: "Glimstick")
+    var priorTouch: CGPoint = CGPoint.zero
+    let touchBox = SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: 100, height: 100))
     
     let playableRect: CGRect
     
@@ -113,6 +115,10 @@ class GameScene: SKScene {
         catsLabel.verticalAlignmentMode = .Bottom
         catsLabel.position = CGPoint(x: playableRect.size.width / 2 - CGFloat(20), y: -playableRect.size.height / 2 + CGFloat(20) + overlapAmount() / 2)
         cameraNode.addChild(catsLabel)
+        
+        touchBox.zPosition = 1000
+        self.addChild(touchBox)
+        touchBox.hidden = true
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -186,7 +192,16 @@ class GameScene: SKScene {
             return
         }
         let touchLocation = touch.locationInNode(self)
-        sceneTouched(touchLocation)
+        #if os (tvOS)
+            let offset = touchLocation - priorTouch
+            let direction = offset.normalized()
+            velocity = direction * zombieMovePointsPerSec
+            priorTouch = (priorTouch * 0.75) + (touchLocation * 0.25)
+            touchBox.position = zombie.position + (direction * 200)
+        #else
+            touchBox.position = touchLocation
+            sceneTouched(touchLocation)
+        #endif
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -195,6 +210,8 @@ class GameScene: SKScene {
         }
         let touchLocation = touch.locationInNode(self)
         sceneTouched(touchLocation)
+        
+        touchBox.position = touchLocation
     }
     
     func moveSprite(sprite: SKSpriteNode, velocity: CGPoint) {
