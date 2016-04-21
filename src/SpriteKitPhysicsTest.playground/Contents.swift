@@ -73,5 +73,32 @@ delay(seconds: 2.0) {
     scene.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
     scene.runAction(SKAction.repeatAction(SKAction.sequence([SKAction.runBlock(spawnSand),
         SKAction.waitForDuration(0.1)]), count: 100))
-    delay(seconds: 12, completion: shake)
+//    delay(seconds: 12, completion: shake)
 }
+
+var blowingRight = true
+var windForce = CGVector(dx: 50, dy: 0)
+
+NSTimer.scheduledTimerWithTimeInterval(0.05, target: scene, selector: "windWithTimer:", userInfo: nil, repeats: true)
+
+NSTimer.scheduledTimerWithTimeInterval(3.0, target: scene, selector: "switchWindDirection:", userInfo: nil, repeats: true)
+
+extension SKScene {
+    func windWithTimer(timer: NSTimer) {
+        scene?.enumerateChildNodesWithName("sand", usingBlock: { (node, _) in
+            node.physicsBody!.applyForce(windForce)
+        })
+        scene?.enumerateChildNodesWithName("shape", usingBlock: { (node, _) in
+            node.physicsBody!.applyForce(windForce)
+        })
+    }
+    
+    func switchWindDirection(timer: NSTimer) {
+        blowingRight = !blowingRight
+        windForce = CGVector(dx: blowingRight ? 50 : -50, dy: 0)
+    }
+}
+
+circle.physicsBody!.dynamic = false
+circle.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.moveToX(scene.size.width, duration: 3.0),
+    SKAction.moveToX(0, duration: 3.0)])))
