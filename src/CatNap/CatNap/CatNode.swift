@@ -44,7 +44,7 @@ class CatNode: SKSpriteNode, CustomNodeEvents {
         catCurl.moveToParent(self)
         catCurl.position = CGPoint(x: -30, y: 100)
         
-        var localPoint = self.parent!.convertPoint(scenePoint, toNode: scene!)
+        var localPoint = self.parent!.convertPoint(scenePoint, fromNode: scene!)
         localPoint.y += self.frame.size.height / 3
         
         self.runAction(SKAction.group([
