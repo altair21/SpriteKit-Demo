@@ -9,12 +9,14 @@
 import SpriteKit
 
 struct PhysicsCategory {
-    static let None: UInt32 = 0
-    static let Cat:  UInt32 = 0b1 //1
-    static let Block:UInt32 = 0b10  //2
-    static let Bed:  UInt32 = 0b100 //4
-    static let Edge: UInt32 = 0b1000 //8
-    static let Label:UInt32 = 0b10000 //16
+    static let None:  UInt32 = 0
+    static let Cat:   UInt32 = 0b1 //1
+    static let Block: UInt32 = 0b10  //2
+    static let Bed:   UInt32 = 0b100 //4
+    static let Edge:  UInt32 = 0b1000 //8
+    static let Label: UInt32 = 0b10000 //16
+    static let Spring:UInt32 = 0b100000 //32
+    static let Hook:  UInt32 = 0b1000000 //64
 }
 
 protocol CustomNodeEvents {
@@ -28,7 +30,15 @@ protocol InteractiveNode {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var bedNode: BedNode!
     var catNode: CatNode!
-    var playble = true
+    var playable = true
+    var currentLevel: Int = 0
+    
+    class func level(levelNum: Int) -> GameScene? {
+        let scene = GameScene(fileNamed: "Level\(levelNum)")!
+        scene.currentLevel = levelNum
+        scene.scaleMode = .AspectFill
+        return scene
+    }
     
     override func didMoveToView(view: SKView) {
         //Calculate playable margin
@@ -52,6 +62,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        catNode.setScale(1.5)
         
         SKTAudio.sharedInstance().playBackgroundMusic("backgroundMusic.mp3")
+        
+//        let rotationConstraint = SKConstraint.zRotation(SKRange(lowerLimit: -π / 4, upperLimit: π / 4))
+//        catNode.parent!.constraints = [rotationConstraint]
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -78,6 +91,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Called before each frame is rendered */
     }
     
+    override func didSimulatePhysics() {
+        if playable {
+            if fabs(catNode.parent!.zRotation) > CGFloat(25).degreesToRadians() {
+                lose()
+            }
+        }
+    }
+    
     func didBeginContact(contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
@@ -86,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             (labelNode as! MessageNode).didBounce()
         }
         
-        if !playble {
+        if !playable {
             return
         }
         
@@ -107,13 +128,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func newGame() {
-        let scene = GameScene(fileNamed: "GameScene")
-        scene!.scaleMode = self.scaleMode
-        self.view!.presentScene(scene)
+        self.view!.presentScene(GameScene.level(currentLevel))
     }
     
     func lose() {
-        playble = false
+        playable = false
         
         SKTAudio.sharedInstance().pauseBackgroundMusic()
         self.runAction(SKAction.playSoundFileNamed("lose.mp3", waitForCompletion: false))
@@ -126,7 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func win() {
-        playble = false
+        playable = false
         
         SKTAudio.sharedInstance().pauseBackgroundMusic()
         self.runAction(SKAction.playSoundFileNamed("win.mp3", waitForCompletion: false))

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5004842E1CC617F400A61E25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5004842D1CC617F400A61E25 /* AppDelegate.swift */; };
-		500484301CC617F400A61E25 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5004842F1CC617F400A61E25 /* GameScene.sks */; };
+		500484301CC617F400A61E25 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5004842F1CC617F400A61E25 /* Level1.sks */; };
 		500484321CC617F400A61E25 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500484311CC617F400A61E25 /* GameScene.swift */; };
 		500484341CC617F400A61E25 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500484331CC617F400A61E25 /* GameViewController.swift */; };
 		500484371CC617F400A61E25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 500484351CC617F400A61E25 /* Main.storyboard */; };
@@ -38,12 +38,15 @@
 		505FA37D1CCE754900BDD4B5 /* MessageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505FA37C1CCE754900BDD4B5 /* MessageNode.swift */; };
 		50A2090E1CCBC44B004E037F /* BedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2090D1CCBC44B004E037F /* BedNode.swift */; };
 		50A209101CCBD785004E037F /* CatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2090F1CCBD785004E037F /* CatNode.swift */; };
+		50D5179E1CD9EC0300C276B9 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 50D5179D1CD9EC0300C276B9 /* Level2.sks */; };
+		50D517A01CD9F47800C276B9 /* SpringNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D5179F1CD9F47800C276B9 /* SpringNode.swift */; };
+		50D517A21CDA113600C276B9 /* HookNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D517A11CDA113600C276B9 /* HookNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5004842A1CC617F400A61E25 /* CatNap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatNap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5004842D1CC617F400A61E25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5004842F1CC617F400A61E25 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		5004842F1CC617F400A61E25 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 		500484311CC617F400A61E25 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		500484331CC617F400A61E25 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		500484361CC617F400A61E25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +77,9 @@
 		505FA37C1CCE754900BDD4B5 /* MessageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageNode.swift; sourceTree = "<group>"; };
 		50A2090D1CCBC44B004E037F /* BedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BedNode.swift; sourceTree = "<group>"; };
 		50A2090F1CCBD785004E037F /* CatNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatNode.swift; sourceTree = "<group>"; };
+		50D5179D1CD9EC0300C276B9 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
+		50D5179F1CD9F47800C276B9 /* SpringNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringNode.swift; sourceTree = "<group>"; };
+		50D517A11CDA113600C276B9 /* HookNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HookNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,8 @@
 				50A2090F1CCBD785004E037F /* CatNode.swift */,
 				505FA37A1CCE6B7100BDD4B5 /* BlockNode.swift */,
 				505FA37C1CCE754900BDD4B5 /* MessageNode.swift */,
+				50D5179F1CD9F47800C276B9 /* SpringNode.swift */,
+				50D517A11CDA113600C276B9 /* HookNode.swift */,
 			);
 			path = CatNap;
 			sourceTree = "<group>";
@@ -139,10 +147,11 @@
 		5004844E1CC629C200A61E25 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				5004842F1CC617F400A61E25 /* GameScene.sks */,
+				5004842F1CC617F400A61E25 /* Level1.sks */,
 				5004844F1CC62A2D00A61E25 /* Cat.sks */,
 				500484511CC63DE700A61E25 /* CatCurl.sks */,
 				500484531CC63F3900A61E25 /* CatWakeUp.sks */,
+				50D5179D1CD9EC0300C276B9 /* Level2.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -227,8 +236,9 @@
 			files = (
 				500484501CC62A2D00A61E25 /* Cat.sks in Resources */,
 				5004844D1CC6192200A61E25 /* win.mp3 in Resources */,
-				500484301CC617F400A61E25 /* GameScene.sks in Resources */,
+				500484301CC617F400A61E25 /* Level1.sks in Resources */,
 				500484521CC63DE700A61E25 /* CatCurl.sks in Resources */,
+				50D5179E1CD9EC0300C276B9 /* Level2.sks in Resources */,
 				5004843C1CC617F400A61E25 /* LaunchScreen.storyboard in Resources */,
 				500484391CC617F400A61E25 /* Assets.xcassets in Resources */,
 				500484491CC6192200A61E25 /* backgroundMusic.mp3 in Resources */,
@@ -250,6 +260,7 @@
 				505FA36F1CCE5C5100BDD4B5 /* CGPoint+Extensions.swift in Sources */,
 				505FA37D1CCE754900BDD4B5 /* MessageNode.swift in Sources */,
 				505FA3771CCE5C5100BDD4B5 /* SKTEffects.swift in Sources */,
+				50D517A21CDA113600C276B9 /* HookNode.swift in Sources */,
 				505FA3721CCE5C5100BDD4B5 /* SKAction+Extensions.swift in Sources */,
 				500484321CC617F400A61E25 /* GameScene.swift in Sources */,
 				505FA3751CCE5C5100BDD4B5 /* SKNode+Extensions.swift in Sources */,
@@ -263,6 +274,7 @@
 				505FA3741CCE5C5100BDD4B5 /* SKColor+Extensions.swift in Sources */,
 				505FA3701CCE5C5100BDD4B5 /* CGVector+Extensions.swift in Sources */,
 				500484341CC617F400A61E25 /* GameViewController.swift in Sources */,
+				50D517A01CD9F47800C276B9 /* SpringNode.swift in Sources */,
 				505FA3761CCE5C5100BDD4B5 /* SKTAudio.swift in Sources */,
 				505FA36E1CCE5C5100BDD4B5 /* CGFloat+Extensions.swift in Sources */,
 				5004842E1CC617F400A61E25 /* AppDelegate.swift in Sources */,
