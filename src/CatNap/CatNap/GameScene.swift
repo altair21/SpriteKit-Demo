@@ -30,6 +30,7 @@ protocol InteractiveNode {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var bedNode: BedNode!
     var catNode: CatNode!
+    var hookNode: HookNode?
     var playable = true
     var currentLevel: Int = 0
     
@@ -65,6 +66,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
 //        let rotationConstraint = SKConstraint.zRotation(SKRange(lowerLimit: -π / 4, upperLimit: π / 4))
 //        catNode.parent!.constraints = [rotationConstraint]
+        
+        hookNode = self.childNodeWithName("hookBase") as? HookNode
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -92,7 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didSimulatePhysics() {
-        if playable {
+        if playable && hookNode?.isHooked != true {
             if fabs(catNode.parent!.zRotation) > CGFloat(25).degreesToRadians() {
                 lose()
             }
@@ -105,6 +108,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if collision == PhysicsCategory.Label | PhysicsCategory.Edge {
             let labelNode = (contact.bodyA.categoryBitMask == PhysicsCategory.Label) ? contact.bodyA.node : contact.bodyB.node
             (labelNode as! MessageNode).didBounce()
+        } else if collision == PhysicsCategory.Cat | PhysicsCategory.Hook && hookNode?.isHooked == false {
+            hookNode!.hookCat(catNode)
         }
         
         if !playable {
@@ -132,6 +137,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func lose() {
+        if (currentLevel > 1) {
+            currentLevel -= 1
+        }
+        
         playable = false
         
         SKTAudio.sharedInstance().pauseBackgroundMusic()
@@ -145,6 +154,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func win() {
+        if (currentLevel < 3) {
+            currentLevel += 1
+        }
+        
         playable = false
         
         SKTAudio.sharedInstance().pauseBackgroundMusic()

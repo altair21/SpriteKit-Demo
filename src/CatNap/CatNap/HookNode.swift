@@ -47,6 +47,34 @@ class HookNode: SKSpriteNode, CustomNodeEvents {
         
         hookNode.physicsBody!.applyImpulse(CGVector(dx: 50, dy: 0))
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HookNode.catTapped), name: kCatTappedNotification, object: nil)
+    }
+    
+    func catTapped() {
+        if isHooked {
+            releaseCat()
+        }
+    }
+    
+    func hookCat(catNode: SKNode) {
+        catNode.parent!.physicsBody!.velocity = CGVector(dx: 0, dy: 0)
+        catNode.parent!.physicsBody!.angularVelocity = 0
+        
+        let pinPoint = CGPoint(x: hookNode.position.x,
+                               y: hookNode.position.y + hookNode.size.height / 2)
+        hookJoint = SKPhysicsJointFixed.jointWithBodyA(hookNode.physicsBody!, bodyB: catNode.parent!.physicsBody!, anchor: pinPoint)
+        self.scene!.physicsWorld.addJoint(hookJoint)
+        
+        hookNode.physicsBody!.contactTestBitMask = PhysicsCategory.None
+    }
+    
+    func releaseCat() {
+        hookNode.physicsBody!.categoryBitMask = PhysicsCategory.None
+        hookNode.physicsBody!.contactTestBitMask = PhysicsCategory.None
+        hookJoint.bodyA.node!.zRotation = 0
+        hookJoint.bodyB.node!.zRotation = 0
+        self.scene!.physicsWorld.removeJoint(hookJoint)
+        hookJoint = nil
     }
     
 }
